@@ -1,0 +1,83 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum Role {
+  STUDENT
+  ADMIN
+}
+
+enum ItemStatus {
+  LOST
+  FOUND
+}
+
+enum Category {
+  ELECTRONICS
+  BOOKS
+  CLOTHING
+  ACCESSORIES
+  DOCUMENTS
+  KEYS
+  BAGS
+  SPORTS
+  OTHER
+}
+
+model User {
+  id            String    @id @default(uuid())
+  email         String    @unique
+  password      String    // Hashed password
+  name          String?
+  role          Role      @default(STUDENT)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  
+  items         Item[]
+  sessions      Session[]
+
+  @@index([email])
+}
+
+model Session {
+  id        String   @id @default(uuid())
+  userId    String
+  token     String   @unique
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+  
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([token])
+}
+
+model Item {
+  id            String     @id @default(uuid())
+  title         String
+  description   String
+  category      Category
+  imageUrl      String?
+  location      String
+  contactNumber String
+  status        ItemStatus
+  isResolved    Boolean    @default(false) // Mark as found/resolved
+  
+  userId        String
+  user          User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  createdAt     DateTime   @default(now())
+  updatedAt     DateTime   @updatedAt
+
+  @@index([userId])
+  @@index([status])
+  @@index([category])
+  @@index([isResolved])
+}
