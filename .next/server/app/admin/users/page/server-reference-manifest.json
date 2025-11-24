@@ -1,0 +1,80 @@
+{
+  "node": {
+    "0017f7986cc16dea30f6f1f8172cfbd97e7efaa604": {
+      "workers": {
+        "app/admin/users/page": {
+          "moduleId": 41979,
+          "async": true,
+          "exportedName": "getAllUsers",
+          "filename": "app/actions/admin.ts"
+        }
+      },
+      "layer": {
+        "app/admin/users/page": "rsc"
+      },
+      "exportedName": "getAllUsers",
+      "filename": "app/actions/admin.ts"
+    },
+    "40901afc44bc2e63c4c4d91d21e1c8a37aa778052c": {
+      "workers": {
+        "app/admin/users/page": {
+          "moduleId": 41979,
+          "async": true,
+          "exportedName": "deleteUser",
+          "filename": "app/actions/admin.ts"
+        }
+      },
+      "layer": {
+        "app/admin/users/page": "action-browser"
+      },
+      "exportedName": "deleteUser",
+      "filename": "app/actions/admin.ts"
+    },
+    "702156816a9106d86bc3d4dc013b326a8dd14a003b": {
+      "workers": {
+        "app/admin/users/page": {
+          "moduleId": 41979,
+          "async": true,
+          "exportedName": "createStudentUser",
+          "filename": "app/actions/admin.ts"
+        }
+      },
+      "layer": {
+        "app/admin/users/page": "action-browser"
+      },
+      "exportedName": "createStudentUser",
+      "filename": "app/actions/admin.ts"
+    },
+    "709af9d15934fda82e752e145449fd84e7a54102ea": {
+      "workers": {
+        "app/admin/users/page": {
+          "moduleId": 41979,
+          "async": true,
+          "exportedName": "createAdminUser",
+          "filename": "app/actions/admin.ts"
+        }
+      },
+      "layer": {
+        "app/admin/users/page": "rsc"
+      },
+      "exportedName": "createAdminUser",
+      "filename": "app/actions/admin.ts"
+    },
+    "00ff1d0b6e750f2af6d32139b707e387ab1a6be8d4": {
+      "workers": {
+        "app/admin/users/page": {
+          "moduleId": 41979,
+          "async": true,
+          "exportedName": "signOut",
+          "filename": "app/actions/auth.ts"
+        }
+      },
+      "layer": {
+        "app/admin/users/page": "action-browser"
+      },
+      "exportedName": "signOut",
+      "filename": "app/actions/auth.ts"
+    }
+  },
+  "edge": {}
+}

@@ -1,0 +1,140 @@
+{
+  "node": {
+    "003e3850756fef8b1063c93c62586ac1df889638ce": {
+      "workers": {
+        "app/admin/items/page": {
+          "moduleId": 5999,
+          "async": true,
+          "exportedName": "getUserItems",
+          "filename": "app/actions/items.ts"
+        }
+      },
+      "layer": {
+        "app/admin/items/page": "rsc"
+      },
+      "exportedName": "getUserItems",
+      "filename": "app/actions/items.ts"
+    },
+    "4034adc90bcac4fd6171dcbb417a2d6eef69737e8e": {
+      "workers": {
+        "app/admin/items/page": {
+          "moduleId": 5999,
+          "async": true,
+          "exportedName": "getItemById",
+          "filename": "app/actions/items.ts"
+        }
+      },
+      "layer": {
+        "app/admin/items/page": "rsc"
+      },
+      "exportedName": "getItemById",
+      "filename": "app/actions/items.ts"
+    },
+    "40480d4fe3378d5fb9b0509d427236f2961f84c373": {
+      "workers": {
+        "app/admin/items/page": {
+          "moduleId": 5999,
+          "async": true,
+          "exportedName": "createItem",
+          "filename": "app/actions/items.ts"
+        }
+      },
+      "layer": {
+        "app/admin/items/page": "rsc"
+      },
+      "exportedName": "createItem",
+      "filename": "app/actions/items.ts"
+    },
+    "407d90f5259c3db6827890960254580b905c49102a": {
+      "workers": {
+        "app/admin/items/page": {
+          "moduleId": 5999,
+          "async": true,
+          "exportedName": "getItems",
+          "filename": "app/actions/items.ts"
+        }
+      },
+      "layer": {
+        "app/admin/items/page": "rsc"
+      },
+      "exportedName": "getItems",
+      "filename": "app/actions/items.ts"
+    },
+    "40c0892441c8f7e694a5ac071d6853cedfedd85b11": {
+      "workers": {
+        "app/admin/items/page": {
+          "moduleId": 5999,
+          "async": true,
+          "exportedName": "deleteItem",
+          "filename": "app/actions/items.ts"
+        }
+      },
+      "layer": {
+        "app/admin/items/page": "rsc"
+      },
+      "exportedName": "deleteItem",
+      "filename": "app/actions/items.ts"
+    },
+    "40cc05ffd1fafb7fb7bb076d159eed5029d7dee660": {
+      "workers": {
+        "app/admin/items/page": {
+          "moduleId": 5999,
+          "async": true,
+          "exportedName": "uploadItemImage",
+          "filename": "app/actions/items.ts"
+        }
+      },
+      "layer": {
+        "app/admin/items/page": "rsc"
+      },
+      "exportedName": "uploadItemImage",
+      "filename": "app/actions/items.ts"
+    },
+    "6000bd970759369a83502178400bb7db088ec2701e": {
+      "workers": {
+        "app/admin/items/page": {
+          "moduleId": 5999,
+          "async": true,
+          "exportedName": "updateItem",
+          "filename": "app/actions/items.ts"
+        }
+      },
+      "layer": {
+        "app/admin/items/page": "rsc"
+      },
+      "exportedName": "updateItem",
+      "filename": "app/actions/items.ts"
+    },
+    "60166baca848cc1b1810d945dfb6f495c794ed7901": {
+      "workers": {
+        "app/admin/items/page": {
+          "moduleId": 5999,
+          "async": true,
+          "exportedName": "markItemAsResolved",
+          "filename": "app/actions/items.ts"
+        }
+      },
+      "layer": {
+        "app/admin/items/page": "rsc"
+      },
+      "exportedName": "markItemAsResolved",
+      "filename": "app/actions/items.ts"
+    },
+    "00ff1d0b6e750f2af6d32139b707e387ab1a6be8d4": {
+      "workers": {
+        "app/admin/items/page": {
+          "moduleId": 5999,
+          "async": true,
+          "exportedName": "signOut",
+          "filename": "app/actions/auth.ts"
+        }
+      },
+      "layer": {
+        "app/admin/items/page": "action-browser"
+      },
+      "exportedName": "signOut",
+      "filename": "app/actions/auth.ts"
+    }
+  },
+  "edge": {}
+}

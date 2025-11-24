@@ -1,0 +1,15 @@
+{
+  "/_global-error/page": "/_global-error",
+  "/_not-found/page": "/_not-found",
+  "/admin/items/page": "/admin/items",
+  "/admin/page": "/admin",
+  "/admin/users/page": "/admin/users",
+  "/dashboard/page": "/dashboard",
+  "/favicon.ico/route": "/favicon.ico",
+  "/items/[id]/edit/page": "/items/[id]/edit",
+  "/items/[id]/page": "/items/[id]",
+  "/items/new/page": "/items/new",
+  "/login/page": "/login",
+  "/page": "/",
+  "/signup/page": "/signup"
+}

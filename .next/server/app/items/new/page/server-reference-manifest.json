@@ -1,0 +1,65 @@
+{
+  "node": {
+    "00ff1d0b6e750f2af6d32139b707e387ab1a6be8d4": {
+      "workers": {
+        "app/items/new/page": {
+          "moduleId": 99820,
+          "async": true,
+          "exportedName": "signOut",
+          "filename": "app/actions/auth.ts"
+        }
+      },
+      "layer": {
+        "app/items/new/page": "action-browser"
+      },
+      "exportedName": "signOut",
+      "filename": "app/actions/auth.ts"
+    },
+    "40480d4fe3378d5fb9b0509d427236f2961f84c373": {
+      "workers": {
+        "app/items/new/page": {
+          "moduleId": 99820,
+          "async": true,
+          "exportedName": "createItem",
+          "filename": "app/actions/items.ts"
+        }
+      },
+      "layer": {
+        "app/items/new/page": "action-browser"
+      },
+      "exportedName": "createItem",
+      "filename": "app/actions/items.ts"
+    },
+    "6000bd970759369a83502178400bb7db088ec2701e": {
+      "workers": {
+        "app/items/new/page": {
+          "moduleId": 99820,
+          "async": true,
+          "exportedName": "updateItem",
+          "filename": "app/actions/items.ts"
+        }
+      },
+      "layer": {
+        "app/items/new/page": "action-browser"
+      },
+      "exportedName": "updateItem",
+      "filename": "app/actions/items.ts"
+    },
+    "40cc05ffd1fafb7fb7bb076d159eed5029d7dee660": {
+      "workers": {
+        "app/items/new/page": {
+          "moduleId": 99820,
+          "async": true,
+          "exportedName": "uploadItemImage",
+          "filename": "app/actions/items.ts"
+        }
+      },
+      "layer": {
+        "app/items/new/page": "action-browser"
+      },
+      "exportedName": "uploadItemImage",
+      "filename": "app/actions/items.ts"
+    }
+  },
+  "edge": {}
+}
