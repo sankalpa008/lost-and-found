@@ -5,9 +5,8 @@ import Navbar from "@/components/Navbar";
 import Link from "next/link";
 import { Users, Package } from "lucide-react";
 
-// Helper function to calculate recent activity - run once during render
+// Helper function to calculate recent activity
 function calculateRecentActivity(items: Array<{ createdAt: Date; updatedAt: Date; isResolved: boolean }>) {
-  "use cache";
   const oneDayAgo = new Date(Date.now() - 24 * 60 * 60 * 1000);
   const recentItemsCount = items.filter((i) => new Date(i.createdAt) > oneDayAgo).length;
   const recentResolvedCount = items.filter((i) => new Date(i.updatedAt) > oneDayAgo && i.isResolved).length;

@@ -4,6 +4,22 @@ import prisma from "@/lib/prisma";
 import { requireAuth } from "@/lib/auth";
 import { revalidatePath } from "next/cache";
 import { Category, ItemStatus } from "@prisma/client";
+import { uploadImage, deleteImage } from "@/lib/storage";
+
+export async function uploadItemImage(formData: FormData) {
+  try {
+    const file = formData.get("file") as File;
+    if (!file) {
+      return { success: false, error: "No file provided" };
+    }
+
+    const imageUrl = await uploadImage(file);
+    return { success: true, imageUrl };
+  } catch (error) {
+    console.error("Error uploading image:", error);
+    return { success: false, error: "Failed to upload image" };
+  }
+}
 
 export async function createItem(formData: FormData) {
   const user = await requireAuth();
@@ -104,6 +120,11 @@ export async function deleteItem(itemId: string) {
   }
 
   try {
+    // Delete image if exists
+    if (item.imageUrl) {
+      await deleteImage(item.imageUrl);
+    }
+
     await prisma.item.delete({
       where: { id: itemId },
     });

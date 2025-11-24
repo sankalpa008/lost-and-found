@@ -1,8 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { uploadImage } from "@/lib/storage";
-import { createItem, updateItem } from "@/app/actions/items";
+import { createItem, updateItem, uploadItemImage } from "@/app/actions/items";
 import { useRouter } from "next/navigation";
 
 const CATEGORIES = ["ELECTRONICS", "BOOKS", "CLOTHING", "ACCESSORIES", "DOCUMENTS", "KEYS", "BAGS", "SPORTS", "OTHER"];
@@ -51,8 +50,17 @@ export default function ItemForm({ mode = "create", initialData, onSuccess }: It
 
       // Upload image if a new one is selected
       if (imageFile) {
-        const imageUrl = await uploadImage(imageFile);
-        formData.set("imageUrl", imageUrl);
+        const uploadFormData = new FormData();
+        uploadFormData.append("file", imageFile);
+        const uploadResult = await uploadItemImage(uploadFormData);
+
+        if (uploadResult.success && uploadResult.imageUrl) {
+          formData.set("imageUrl", uploadResult.imageUrl);
+        } else {
+          setError(uploadResult.error || "Failed to upload image");
+          setLoading(false);
+          return;
+        }
       } else if (initialData?.imageUrl) {
         formData.set("imageUrl", initialData.imageUrl);
       }
@@ -89,14 +97,22 @@ export default function ItemForm({ mode = "create", initialData, onSuccess }: It
         <label htmlFor="title" className="block text-sm font-medium text-gray-700 mb-1">
           Title *
         </label>
-        <input type="text" id="title" name="title" required defaultValue={initialData?.title} className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="e.g., Black Backpack" />
+        <input type="text" id="title" name="title" required defaultValue={initialData?.title} className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900 placeholder:text-gray-500" placeholder="e.g., Black Backpack" />
       </div>
 
       <div>
         <label htmlFor="description" className="block text-sm font-medium text-gray-700 mb-1">
           Description *
         </label>
-        <textarea id="description" name="description" required rows={4} defaultValue={initialData?.description} className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Provide detailed description..." />
+        <textarea
+          id="description"
+          name="description"
+          required
+          rows={4}
+          defaultValue={initialData?.description}
+          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900 placeholder:text-gray-500"
+          placeholder="Provide detailed description..."
+        />
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -104,8 +120,10 @@ export default function ItemForm({ mode = "create", initialData, onSuccess }: It
           <label htmlFor="category" className="block text-sm font-medium text-gray-700 mb-1">
             Category *
           </label>
-          <select id="category" name="category" required defaultValue={initialData?.category} className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
-            <option value="">Select a category</option>
+          <select id="category" name="category" required defaultValue={initialData?.category} className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900">
+            <option value="" className="text-gray-500">
+              Select a category
+            </option>
             {CATEGORIES.map((cat) => (
               <option key={cat} value={cat}>
                 {cat}
@@ -118,7 +136,7 @@ export default function ItemForm({ mode = "create", initialData, onSuccess }: It
           <label htmlFor="status" className="block text-sm font-medium text-gray-700 mb-1">
             Status *
           </label>
-          <select id="status" name="status" required defaultValue={initialData?.status} className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+          <select id="status" name="status" required defaultValue={initialData?.status} className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900">
             <option value="LOST">Lost</option>
             <option value="FOUND">Found</option>
           </select>
@@ -129,21 +147,35 @@ export default function ItemForm({ mode = "create", initialData, onSuccess }: It
         <label htmlFor="location" className="block text-sm font-medium text-gray-700 mb-1">
           Location *
         </label>
-        <input type="text" id="location" name="location" required defaultValue={initialData?.location} className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="e.g., Library 2nd Floor" />
+        <input type="text" id="location" name="location" required defaultValue={initialData?.location} className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900 placeholder:text-gray-500" placeholder="e.g., Library 2nd Floor" />
       </div>
 
       <div>
         <label htmlFor="contactNumber" className="block text-sm font-medium text-gray-700 mb-1">
           Contact Number *
         </label>
-        <input type="tel" id="contactNumber" name="contactNumber" required defaultValue={initialData?.contactNumber} className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="e.g., +1234567890" />
+        <input
+          type="tel"
+          id="contactNumber"
+          name="contactNumber"
+          required
+          defaultValue={initialData?.contactNumber}
+          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900 placeholder:text-gray-500"
+          placeholder="e.g., +1234567890"
+        />
       </div>
 
       <div>
         <label htmlFor="image" className="block text-sm font-medium text-gray-700 mb-1">
           Image
         </label>
-        <input type="file" id="image" accept="image/*" onChange={handleImageChange} className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" />
+        <input
+          type="file"
+          id="image"
+          accept="image/*"
+          onChange={handleImageChange}
+          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
+        />
         {imagePreview && (
           <div className="mt-3">
             <img src={imagePreview} alt="Preview" className="w-full max-w-xs h-48 object-cover rounded-md" />
